@@ -1,0 +1,72 @@
+---
+title: "Data Processing README"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+This document describes the methodology behind the data cleaning, imputation, and feature generation/feature engineering for use in the Kaggle machine learning project.
+
+Pipeline for the data processing:
+
+1. Import raw data inspect and remove outliers in training data
+3. Impute data:
+    + Impute pseudo-missing values
+    + Impute true-missing values
+    + Simple imputation using mode, mean, random.
+4. Add new feature variables
+5. Bucketize numeric variables and thus transforming into categorical - one hot encoded.
+5. Dummify categorical feature variables using Sklearn's one hot encoding.
+6. Remove unnecessary feature variables
+
+Scripts:
+
+task/missing_val.py - imputation of missing values
+task/generate_features.py - continue imputation of missing values using KNN, add new features, bucketize, dummification and dropping unnecessary columns.
+task/process_data.py - calls generate_featuers and saves processed data in data/process/ 
+
+### Outliers in Training Data 
+See task/notebook.ipynb for visual examination of the distribution of our feature space and target. Using boxcox transformation on the Saleprice to better visualize the linear relationship between the GrLivArea and saleprice.
+There are 2 data points where GrLivArea are extremely large but saleprice is very low. These two outliers are removed to better generalize the model during prediction time.
+
+
+### Data Imputation
+#### Pseudo-Missing Values
+There were a number of feature variables that contained missing values that did not, in fact, represent missing data. Instead of an incomplete observation, missing values in these features represented a lack of the element in question on the property, so filling these NAs as 'None'.
+
+The fourteen feature variables with pseudo-missingness were: Alley, BsmtCond, BsmtQual, BsmtFinType1, Fence, Fireplace, GarageCond, GarageFinish, GarageQual, GarageType, GarageYrBlt, MasVnrType, MiscFeature, and PoolQC.
+
+#### True-Missing Values
+In addition to the feature variables with pseudo-missingness, there were five features where missing values indicated true missing data. Those variables were: Electrical, MasVnrArea, LotFrontage, BsmtExposure, and BsmtFinType2. Because many of our machine learning modesls are unable to handle missing data, it was necessary to impute the missing values for these feature variables.
+
+By and large, the variables were imputed using Random imputation with weights. When doing so, we calculate the probability distribution from the known training dataset and use this to randomly fill in the data where missing.
+
+
+#### Categorical Variables
+The distribution of a large number of categorical variables was such that many of the features were dominated by a single value, with the remaining values being more sparsely populated. Because this sparsity resulted in a lack of representative data, and in an attempt to reduce the feature space expansion resulting from the need to dummify categorical features, we consolidated those categorical variables to follow the general pattern of "Dominant Class(es), Other."
+
+Feature variables engineered in this way were: Exterior1st, RoofMatl, RoofStyle, Condition1, LotShape, Functional, Electrical, Heating, Foundation, and SaleType.
+
+Additionally, some categorical variables represented an ordinal ranking - for instance, there were numerous variables related to the quality or condition of some housing feature, which were represented by categorical strings (such as "Excellent," "Fair," etc.). Because quality and condition are inherently ranked, we converted these variables to ordinal variables, to reduce the need for dummification.
+
+### New Feature Variables
+To reduce the size of the feature space without losing important data, the following feature variables were combined to create new feature variables:
+
++ 1stFlrSF + 2ndFlrSF + TotalBsmtSF -> TotalSF
++ BsmtFullBath + FullBath -> TotalFullBath
++ BsmtHalfBath + HalfBath -> TotalHalfBath
+
+Additionally, new categorical feature variables were created to indicate whether a given home had a garage (IsGarage) or a pool (IsPool).
+
+### Dummifying Feature Variables
+All categorical feature variables were dummified using One Hot Encoding. Note that trained (using training data only) One Hot Encoder model is saved to serve the test dataset.
+
+### Removed Feature Variables
+Some feature variables were rendered unnecessary by the engineering above. Others were so highly correlated with other variables that inclduing them violated core assumptions of linear models, and yet others had too few observations to be statistically useful.
+
++ Target Variable: SalePrice
++ Dropped due to no useful information: Id, Utilities where all but 2 observations are AllPubs, thus essentially having no contribution to the models.
