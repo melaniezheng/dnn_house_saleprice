@@ -1,7 +1,8 @@
 ### Prediction house saleprice using Deep Neural Networks.
 
-Motivation:
-I led a team of three to participate in the kaggle challenge house-prices-advanced-regression-techniques. We tried various machine learning techniques including linear estimators, regularized linear estimator (lasso, ridge, elastic net), GradientBoost, XGBoost, CatBoost, and Stacked regressor.  We built a data pipe line to clean data, impute missing values, add new features, one hot encode categorical features, and drop unhelpful features to preprocess the data that's going into the models. That was our first ever machine learning project and our prediction ranked top 14% on the Leadership board. Here is a link to the github repo. https://github.com/melaniezheng/predicting_house_saleprice
+Motivation: 
+
+I led a team of three to participate in the kaggle challenge house-prices-advanced-regression-techniques. We tried various machine learning techniques including linear estimators, regularized linear estimator (lasso, ridge, elastic net), GradientBoost, XGBoost, CatBoost, and Stacked regressor.  We built a data pipe line to clean data, impute missing values, add new features, one hot encode categorical features, and drop unhelpful features to preprocess the data that's going into the models. That was our first ever machine learning project and our prediction ranked top 14% on the Leadership board. <br> Here is a link to the github repo. https://github.com/melaniezheng/predicting_house_saleprice
 
 Since then, I've been obssessed in various machine learning techniques, read a lot about data processing and machine learning techning techniques, especially deep neural networks. I took some deep learning course offere by deeplearning.ai on Coursera and wanted to put what I've learned into an actual project. 
 
