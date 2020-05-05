@@ -6,7 +6,7 @@ I led a team of three to participate in the kaggle challenge house-prices-advanc
 
 Since then, I've been obssessed in various machine learning techniques, read a lot about data processing and machine learning techning techniques, especially deep neural networks. I took some deep learning course offere by deeplearning.ai on Coursera and wanted to put what I've learned into an actual project. 
 
-Some of the changes I've made to the data processing pipeline:
+#### Updates to data processing pipeline:
 - remove only 2 outliers related to GrLivArea.
 - impute data from the knowledge of training data only and applied the same process to test data.
 - used random imputation for categorical features with specified weights (from training data distribution).
@@ -15,9 +15,16 @@ Some of the changes I've made to the data processing pipeline:
 - Did not drop these features: BsmtUnfSF','TotalBsmtSF','1stFlrSF','2ndFlrSF','LowQualFinSF','GrLivArea','BsmtFullBath','BsmtHalfBath','FullBath','HalfBath','OpenPorchSF','Condition2', #"Exterior2nd", "GarageQual",'PoolQC', 'MiscFeature','BsmtFinType2','GarageYrBlt'
 - Bucketized these two features: 'YearBuilt','YearRemodAdd'. (We dummified them previously
 
-Deep Neural Net Models:
+#### Deep Neural Net Models(w/ Keras):
 Here are the models I will be trying in this project.
 - Basic Neural Net: X -> dim(X) -> Y. Note: dim(X) is really the number of features. My data had 257 features after preprocessing.
 - Wide/Narrow Neural Net: X --> N --> Y, where N is less than or greater than 257, respectively.
 - Deep Neural Nets: X --> N --> N --> N --> Y. I will experiment with different N here and discover what works best for my specific dataset. 
 - Finally, X --> N --> N --> N --> N --> N --> Y. same as above.
+
+#### Hyperparameter tuning techniques: 
+- batch_size
+- epoch 
+- early stopping
+- dropout
+- batch normalization
