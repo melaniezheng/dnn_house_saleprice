@@ -13,7 +13,7 @@ Since then, I've been obssessed with various machine learning techniques, readin
 - build one hot encoder using training data only for data processing.
 - use knn to impute LotFrontage using the knowledge from training data only.
 - Did not drop these features: BsmtUnfSF','TotalBsmtSF','1stFlrSF','2ndFlrSF','LowQualFinSF','GrLivArea','BsmtFullBath','BsmtHalfBath','FullBath','HalfBath','OpenPorchSF','Condition2', #"Exterior2nd", "GarageQual",'PoolQC', 'MiscFeature','BsmtFinType2','GarageYrBlt'
-- Bucketized these two features: 'YearBuilt','YearRemodAdd'. (We dummified them previously
+- Bucketized these two features: 'YearBuilt','YearRemodAdd'. (We dummified them previously)
 
 #### Deep Neural Net Models(w/ Keras):
 Here are the models I will be trying in this project.
