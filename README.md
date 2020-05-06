@@ -20,7 +20,6 @@ Here are the models I will be trying in this project.
 - Basic Neural Net: X -> dim(X) -> Y. Note: dim(X) is really the number of features. My data had 257 features after preprocessing.
 - Wide/Narrow Neural Net: X --> N --> Y, where N is less than or greater than 257, respectively.
 - Deep Neural Nets: X --> N --> N --> N --> Y. I will experiment with different N here and discover what works best for my specific dataset. 
-- Finally, X --> N --> N --> N --> N --> N --> Y. same as above.
 
 #### Hyperparameter tuning techniques: 
 - batch_size
