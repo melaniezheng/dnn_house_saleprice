@@ -27,3 +27,5 @@ Here are the models I will be trying in this project.
 - early stopping
 - dropout
 - batch normalization
+
+#### Goal: 1. find out which neural net performs the best and how long does it take to train. 2. Do neural net perform better than XGBoost and RandomForest?
